@@ -2,13 +2,21 @@
 {% block title %}To Do List{% endblock %}
 {% block main %}
     <h2>{{ list.name }}</h2>
-    {% if items_exist %}
-        <ul>
-            {% for item in items %}
-                <li>{{ item.text }} - {% if item.complete == True %} Completed {% else %} Not completed {% endif %}</li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No items on the list</p>
-    {% endif %}
+    <form method="POST" action="{{list.id}}">
+        {% csrf_token %}
+        <input type="text" name="newItem" maxlength="200">
+        <input type="checkbox" name="newCheck">
+        <input type="submit" name="addItem" value="Add Item">
+        {{ result }}
+        {% if items_exist %}
+            <ul>
+                {% for item in items %}
+                    <li><input type="checkbox" name="c{{item.ukey}}" {% if item.complete %} checked {% endif %}> {{ item.text }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No items on the list</p>
+        {% endif %}
+        <input type="submit" name="save" value="Save">
+    </form>
 {% endblock %}
