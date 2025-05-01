@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
 {% block title %}Lists{% endblock %}
 {% block main %}
-    <h2>Lists</h2>
-    <ul>
+    <h2 class="subtitle">LISTS</h2>
+    <section class="list-block">
         {% for list in lists %}
-            <li>
-                <a href="{{ list.ukey }}">{{ list.name }}</a>
-            </li>
+            <div class="list-display">
+                <a href="{{ list.ukey }}">
+                    <h3 class="list-display-name">{{ list.name }}</h3>
+                </a>
+            </div>
         {% endfor %}
-    </ul>
+    </section>
 {% endblock %}

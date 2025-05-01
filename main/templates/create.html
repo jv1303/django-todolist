@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 {% block title %}Create List{% endblock %}
 {% block main %}
-    <h2>Create list</h2>
+    <h2 class="subtitle">CREATE LIST</h2>
     <form method="POST" action="/createlist/">
         {% csrf_token %}
-        {{ form.as_p }}
+        <label for="name">Name: </label>
+        <input type="text" name="name" id="name">
         <input type="submit" value="Save">
     </form>
     {{ result }}
