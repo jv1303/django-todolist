@@ -4,14 +4,38 @@
     <h2 class="subtitle">{{ list.name }}</h2>
     <form method="POST" action="{{list.id}}">
         {% csrf_token %}
-        <input type="text" name="newItem" maxlength="200">
-        <input type="checkbox" name="newCheck">
+        <label for="newItem">Name</label>
+        <input type="text" name="newItem" id="newItem" maxlength="200">
+        <div class="checkbox">
+            <label for="newCheck" class="item">
+              <input type="checkbox" id="newCheck" class="hidden"/>
+              <label for="newCheck" class="cbx">      
+                <svg width="14px" height="12px" viewBox="0 0 14 12">
+                  <polyline points="1 7.6 5 11 13 1"></polyline>
+                </svg>
+              </label>
+              <label for="newCheck" class="cbx-lbl">Completed</label>
+            </label>
+        </div>
         <input type="submit" name="addItem" value="Add Item">
         {{ result }}
         {% if items_exist %}
             <ul>
                 {% for item in items %}
-                    <li><input type="checkbox" name="c{{item.ukey}}" {% if item.complete %} checked {% endif %}> {{ item.text }}</li>
+                    <li>
+                        <div class="checkbox">
+                            <label for="c{{item.ukey}}" class="item">
+                                <input type="checkbox" name="c{{item.ukey}}" id="c{{item.ukey}}" {% if item.complete %} checked {% endif %} class="hidden"/>
+                                <label for="c{{item.ukey}}" class="cbx">      
+                                <svg width="14px" height="12px" viewBox="0 0 14 12">
+                                    <polyline points="1 7.6 5 11 13 1"></polyline>
+                                </svg>
+                                </label>
+                                <label for="c{{item.ukey}}" class="cbx-lbl">{{ item.text }}</label>
+                            </label>
+                        </div>
+                    </li>
+                    {% comment %} <li><input type="checkbox" name="c{{item.ukey}}" {% if item.complete %} checked {% endif %}> </li> {% endcomment %}
                 {% endfor %}
             </ul>
         {% else %}
@@ -20,3 +44,4 @@
         <input type="submit" name="save" value="Save">
     </form>
 {% endblock %}
+  

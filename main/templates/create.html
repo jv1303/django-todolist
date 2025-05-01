@@ -4,9 +4,9 @@
     <h2 class="subtitle">CREATE LIST</h2>
     <form method="POST" action="/createlist/">
         {% csrf_token %}
-        <label for="name">Name: </label>
+        <label for="name">Name</label>
         <input type="text" name="name" id="name">
         <input type="submit" value="Save">
     </form>
-    {{ result }}
+    <h3 class="output" style="color: {{color}};">{{ result }}<h3>
 {% endblock %}

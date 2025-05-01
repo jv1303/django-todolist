@@ -58,11 +58,14 @@ def create(response):
             t = ToDoList(ukey=uk, name=n)
             t.save()
             result = "List registered sucefully!"
+            color = "#079e64"
         else:
-            result = "An error ocourred and the list was not registered."
+            result = "The list must have a name."
+            color = "#800"
         
     else:
         form = CreateNewList()
         result = ""
+        color = "#000"
 
-    return render(response, 'create.html', {"form": form, "result": result})
+    return render(response, 'create.html', {"form": form, "result": result, "color": color})
