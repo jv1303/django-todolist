@@ -10,6 +10,7 @@ def index(response):
 def toDoList(response, id):
     ls_query = ToDoList.objects.filter(ukey = id)
     result = ""
+    color = ""
 
     if response.method == "POST" and ls_query.exists():
         list = ToDoList.objects.get(ukey = id)
@@ -22,7 +23,7 @@ def toDoList(response, id):
                 item.save()
         elif response.POST.get("addItem"):
             txt = response.POST.get("newItem")
-            if len(txt) > 0:
+            if len(txt) > 0 and len(txt) < 200:
                 uk = gen_ukey(8, Item, 'it')
                 if response.POST.get("newCheck"):
                     compl = True
@@ -32,6 +33,7 @@ def toDoList(response, id):
                 list.item_set.create(ukey = uk, text = txt, complete = compl)
             else:
                 result = "Item text is required!"
+                color = "#800"
 
     it = Item.objects.filter(toDoList = id)
     items_exist = True
@@ -40,7 +42,7 @@ def toDoList(response, id):
         items_exist = False
     if ls_query.exists():
         ls = ToDoList.objects.get(ukey = id)
-        return render(response, 'todo.html', {"list": ls, "items": it, "items_exist": items_exist, "result": result})
+        return render(response, 'todo.html', {"list": ls, "items": it, "items_exist": items_exist, "result": result, "color": color})
     else:
         return render(response, 'page_not_found.html')
     

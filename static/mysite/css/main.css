@@ -66,6 +66,13 @@ footer {
     font-weight: 900;
 }
 
+.subtitle-2 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #097a4f;
+    margin: 10px 0 0 0;
+}
+
 .paragraph {
     font-size: 20px;
     font-weight: 300;
@@ -129,14 +136,17 @@ form {
     flex-direction: column;
     min-width: 200px;
     width: 20%;
+    flex-wrap: wrap;
 }
 
 label {
     font-size: 14px;
     font-weight: 300;
+    word-wrap: break-word;
 }
 input {
     border-radius: 6px;
+    max-width: 100%;
 }
 
 input[type="text"] {
@@ -285,4 +295,21 @@ input[type="submit"] {
 
 li {
     list-style: none;
+}
+
+fieldset {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    border: #097a4f 1px solid;
+    border-radius: 10px;
+}
+fieldset legend {
+    font-weight: 300;
+    color: #097a4f;
+}
+
+.to-do-list {
+    padding: 0;
+    max-width: 110%;
 }

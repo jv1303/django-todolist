@@ -4,23 +4,27 @@
     <h2 class="subtitle">{{ list.name }}</h2>
     <form method="POST" action="{{list.id}}">
         {% csrf_token %}
-        <label for="newItem">Name</label>
-        <input type="text" name="newItem" id="newItem" maxlength="200">
-        <div class="checkbox">
-            <label for="newCheck" class="item">
-              <input type="checkbox" id="newCheck" class="hidden"/>
-              <label for="newCheck" class="cbx">      
-                <svg width="14px" height="12px" viewBox="0 0 14 12">
-                  <polyline points="1 7.6 5 11 13 1"></polyline>
-                </svg>
-              </label>
-              <label for="newCheck" class="cbx-lbl">Completed</label>
-            </label>
-        </div>
-        <input type="submit" name="addItem" value="Add Item">
-        {{ result }}
+        <fieldset id="add-item-fieldset">
+            <legend>Add Item</legend>
+            <label for="newItem">Name</label>
+            <input type="text" name="newItem" id="newItem" maxlength="200">
+            <div class="checkbox">
+                <label for="newCheck" class="item">
+                <input type="checkbox" id="newCheck" class="hidden"/>
+                <label for="newCheck" class="cbx">      
+                    <svg width="14px" height="12px" viewBox="0 0 14 12">
+                    <polyline points="1 7.6 5 11 13 1"></polyline>
+                    </svg>
+                </label>
+                <label for="newCheck" class="cbx-lbl">Completed</label>
+                </label>
+            </div>
+            <input type="submit" name="addItem" value="Add Item">
+        </fieldset>
+        <h3 class="output" style="color: {{color}}; align-self: center; margin-top: 5px;">{{ result }}</h3>
         {% if items_exist %}
-            <ul>
+            <h3 class="subtitle-2">To-do:</h3>
+            <ul class="to-do-list">
                 {% for item in items %}
                     <li>
                         <div class="checkbox">
