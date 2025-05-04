@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import ToDoList, Item
 from .forms import CreateNewList
 from .funcs import gen_ukey
@@ -71,3 +71,11 @@ def create(response):
         color = "#000"
 
     return render(response, 'create.html', {"form": form, "result": result, "color": color})
+
+def deletelist(response):
+    id = response.POST.get("list")
+    if response.method == "POST":
+        list = ToDoList.objects.get(ukey = id)
+        list.delete()
+    
+    return redirect('Lists')

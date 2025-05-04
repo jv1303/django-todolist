@@ -3,18 +3,23 @@
 {% block title %}Lists{% endblock %}
 {% block main %}
     <h2 class="subtitle">LISTS</h2>
-    <section class="list-block">
-        {% for list in lists %}
-            <div class="out-div">
-                <div class="list-display">
-                    <a href="{{ list.ukey }}">
-                        <h3 class="list-display-name">{{ list.name }}</h3>
-                    </a>
+    <section>
+        <form method="POST" action="/deletelist/" class="list-block">
+            {% csrf_token %}
+            {% for list in lists %}
+                <div class="out-div">
+                    <div class="list-display">
+                        <a href="{{ list.ukey }}">
+                            <h3 class="list-display-name">{{ list.name }}</h3>
+                        </a>
+                    </div>
+                    <div class="delete-list">
+                        <button type="submit" value="{{ list.ukey }}" class="delete-button" name="list" on-click="confirmDelete()">
+                            <img src="{% static 'mysite/img/botao-excluir.png' %}" alt="Delete icon" class="icon">
+                        </button>
+                    </div>
                 </div>
-                <div class="delete-list">
-                    <img href="{% static 'img/botao-excluir.png' %}" width="32px" height="32px">
-                </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
+        </form>
     </section>
 {% endblock %}

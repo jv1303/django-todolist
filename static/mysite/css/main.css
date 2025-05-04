@@ -98,13 +98,14 @@ td a {
 
 .list-block {
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
     width: 100%;
 }
 
 .list-display {
-    margin: 25px;
-    width: 350px;
+    margin-right: 10px;
+    width: 325px;
     min-height: 80px;
     display: flex;
     justify-content: center;
@@ -312,4 +313,28 @@ fieldset legend {
 .to-do-list {
     padding: 0;
     max-width: 110%;
+}
+
+.out-div {
+    width: 380px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 15px;
+}
+
+.icon {
+    filter: brightness(0);
+    width: 32px;
+    margin: 0;
+}.icon:hover {
+    transition: 0.1s;
+    cursor: pointer;
+    filter: brightness(1);
+    width: 36px;
+}
+
+.delete-button {
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
 }
