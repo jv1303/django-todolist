@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}To Do List{% endblock %}
 {% block main %}
     <h2 class="subtitle">{{ list.name }}</h2>
@@ -10,7 +11,7 @@
             <input type="text" name="newItem" id="newItem" maxlength="200">
             <div class="checkbox">
                 <label for="newCheck" class="item">
-                <input type="checkbox" id="newCheck" class="hidden"/>
+                <input type="checkbox" name="newCheck" id="newCheck" class="hidden"/>
                 <label for="newCheck" class="cbx">      
                     <svg width="14px" height="12px" viewBox="0 0 14 12">
                     <polyline points="1 7.6 5 11 13 1"></polyline>
@@ -38,8 +39,12 @@
                                 <label for="c{{item.ukey}}" class="cbx-lbl">{{ item.text }}</label>
                             </label>
                         </div>
+                        <div class="delete-list">
+                            <button type="submit" value="{{ item.ukey }}" class="delete-button" name="deleteItem" id="delete_item_{{item.ukey}}">
+                                <img src="{% static 'mysite/img/botao-excluir.png' %}" alt="Delete icon" class="icon">
+                            </button>
+                        </div>
                     </li>
-                    {% comment %} <li><input type="checkbox" name="c{{item.ukey}}" {% if item.complete %} checked {% endif %}> </li> {% endcomment %}
                 {% endfor %}
             </ul>
         {% else %}

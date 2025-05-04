@@ -34,6 +34,10 @@ def toDoList(response, id):
             else:
                 result = "Item text is required!"
                 color = "#800"
+        elif response.POST.get("deleteItem"):
+            item_id = response.POST.get("deleteItem")
+            item = Item.objects.get(ukey = item_id)
+            item.delete()
 
     it = Item.objects.filter(toDoList = id)
     items_exist = True

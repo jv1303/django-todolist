@@ -295,7 +295,15 @@ input[type="submit"] {
 }
 
 li {
+    display: flex;
+    justify-content: space-between;
     list-style: none;
+}
+
+li .icon {
+    width: 16px;
+} li .icon:hover {
+    width: 16px;
 }
 
 fieldset {

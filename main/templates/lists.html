@@ -4,8 +4,9 @@
 {% block main %}
     <h2 class="subtitle">LISTS</h2>
     <section>
-        <form method="POST" action="/deletelist/" class="list-block">
+        <form method="POST" action="/deletelist/" id="deleteForm" class="list-block">
             {% csrf_token %}
+            <input type="hidden" id="listToDelete" name="list" value="">
             {% for list in lists %}
                 <div class="out-div">
                     <div class="list-display">
@@ -14,7 +15,7 @@
                         </a>
                     </div>
                     <div class="delete-list">
-                        <button type="submit" value="{{ list.ukey }}" class="delete-button" name="list" on-click="confirmDelete()">
+                        <button type="button" value="{{ list.ukey }}" class="delete-button" onclick="confirmDelete('{{ list.ukey }}')">
                             <img src="{% static 'mysite/img/botao-excluir.png' %}" alt="Delete icon" class="icon">
                         </button>
                     </div>
